@@ -14,13 +14,21 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
 
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Models\Status');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
     }
 
 }

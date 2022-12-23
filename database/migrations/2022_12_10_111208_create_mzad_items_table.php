@@ -2,6 +2,7 @@
 
 use App\Models\MzadType;
 use App\Models\Addresse;
+use App\Models\Status;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,7 +23,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('subject');
             $table->json('details');
             $table->text('description');
@@ -30,14 +31,13 @@ return new class extends Migration
             $table->dateTime('endDate');
             $table->integer('basePrice');
             $table->integer('directSalePrice');
-            $table->integer('status_id');
             $table->dateTime('dateTime');
-            $table->foreignIdFor(Addresse::class)->constrained()->onDelete('CASCADE');
-            //$table->integer('address_id');
-            //$table->foreign('address_id')->references('id')->on('addresses');
-            $table->foreignIdFor(MzadType::class)->constrained()->onDelete('CASCADE');
-            //$table->integer('mzadType_id');
-            //$table->foreign('mzadType_id')->references('id')->on('mzad_type');
+            $table->unsignedBigInteger('addresse_id');
+            $table->foreign('addresse_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->unsignedBigInteger('mzad_type_id');
+            $table->foreign('mzad_type_id')->references('id')->on('mzad_types')->onDelete('cascade');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();
         });
     }

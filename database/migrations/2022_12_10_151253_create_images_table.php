@@ -20,10 +20,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('url');
             $table->integer('imageable_id');
-            $table->string('imageable_type ');
+            $table->string('imageable_type');
             $table->timestamps();
         });
     }

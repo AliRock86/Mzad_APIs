@@ -14,8 +14,16 @@ class Outbidding extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Models\MzadItem');
+    }
 
 }

@@ -22,17 +22,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('Name');
             $table->string('email');
             $table->string('password');
             $table->string('apiKey');
-            $table->foreignIdFor(Role::class)->constrained()->onDelete('CASCADE');
-           // $table->integer('role_id');
-           // $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreignIdFor(Status::class)->constrained()->onDelete('CASCADE');
-           //$table->integer('status_id');
-            //$table->foreign('status_id')->references('id')->on('status');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();
         });
     }

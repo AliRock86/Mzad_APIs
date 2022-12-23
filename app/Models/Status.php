@@ -14,8 +14,21 @@ class Status extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
+
+    public function status_type()
+    {
+        return $this->belongsTo('App\Models\StatusType');
+    }
+
+    public function user()
+    {
+        return $this->hasMany('App\Models\User');
+    }
+
+    public function mzad_item()
+    {
+        return $this->hasMany('App\Models\MzadItem');
+    }
 
 }

@@ -14,9 +14,7 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
 
 
     public function imageable()

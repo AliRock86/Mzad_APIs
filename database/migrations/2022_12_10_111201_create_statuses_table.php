@@ -21,11 +21,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('statusName');
             $table->string('statusNameAr');
-            //$table->integer('statusType_id');
-            $table->foreignIdFor(StatusType::class)->constrained()->onDelete('CASCADE');
+            $table->unsignedBigInteger('status_type_id');
+            $table->foreign('status_type_id')->references('id')->on('status_types')->onDelete('cascade');
+           // $table->foreignId('status_type_id')->nullable()->constrained('status_types')->cascadeOnDelete('set null');
             $table->timestamps();
         });
     }

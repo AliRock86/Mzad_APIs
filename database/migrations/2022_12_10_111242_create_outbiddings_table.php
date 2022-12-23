@@ -22,13 +22,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
-            //$table->integer('user_id');
-            $table->foreignIdFor(User::class)->constrained()->onDelete('CASCADE');
-            //$table->foreign('user_id')->references('id')->on('users');
-            //$table->integer('mzad_id');
-            $table->foreignIdFor(MzadItem::class)->constrained()->onDelete('CASCADE');
-            //$table->foreign('mzad_id')->references('id')->on('mzad_item');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('mzad_item_id');
+            $table->foreign('mzad_item_id')->references('id')->on('mzad_items')->onDelete('cascade');
             $table->integer('amount');
             $table->integer('lastPrice');
             $table->timestamps();

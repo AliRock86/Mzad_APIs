@@ -15,12 +15,26 @@ class MzadItem extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
+    
     public function image()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function mzad_type()
+    {
+        return $this->belongsTo('App\Models\MzadType');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Models\Status');
+    }
+
+    public function addresse()
+    {
+        return $this->belongsTo('App\Models\Addresse');
     }
 
 }

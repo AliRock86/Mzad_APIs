@@ -20,7 +20,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('MzadTypeName');
             $table->string('MzadTypeNameAr');
             $table->timestamps();

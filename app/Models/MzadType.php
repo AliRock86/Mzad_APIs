@@ -14,8 +14,11 @@ class MzadType extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
+
+    public function mzad_item()
+    {
+        return $this->hasMany('App\Models\MzadItem');
+    }
 
 }

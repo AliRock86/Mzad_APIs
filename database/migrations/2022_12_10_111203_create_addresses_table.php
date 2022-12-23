@@ -21,10 +21,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->increments('id');
-            //$table->integer('province_id');
-            $table->foreignIdFor(Province::class)->constrained()->onDelete('CASCADE');
-            //$table->foreign('province_id')->references('id')->on('provinces');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('province_id');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
             $table->string('long');
             $table->string('lat');
             $table->string('region');

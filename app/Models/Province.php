@@ -14,8 +14,11 @@ class Province extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = [];
+
+    public function addresse()
+    {
+        return $this->hasMany('App\Models\Addresse');
+    }
 
 }
