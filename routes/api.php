@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageControllerAPI;
 use App\Http\Controllers\OutbiddingControllerAPI;
 use App\Http\Controllers\MzadItemControllerAPI;
@@ -27,6 +28,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+|--------------------------------------------------------------------------
+| Role endpoints
+|--------------------------------------------------------------------------
+ */
+Route::name('auth.')->controller(AuthController::class)->prefix('auth')->middleware(['api'])->group(function () {
+    Route::post('signup', 'signUp')->name('signup');
+    Route::post('login', 'login')->name('login');
+   /* Route::post('logout', 'logout')->name('logout');
+    Route::post('refresh', 'refresh')->name('refresh');
+    Route::post('me', 'me')->name('me');*/
+});
+
 /*
 |--------------------------------------------------------------------------
 | Role endpoints
